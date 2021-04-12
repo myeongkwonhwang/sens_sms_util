@@ -18,7 +18,6 @@ import java.util.TreeMap;
  */
 @Slf4j
 public class RequestHelper {
-    private static final String SIGNATURE_ALGORITHM = "HmacSHA256";
 
     private SensConfig sensConfig;
 
@@ -44,8 +43,6 @@ public class RequestHelper {
         String timeStamp = Long.toString(System.currentTimeMillis());
         String serviceUri = ServiceConstants.API_MESSAGESERVICE + sensConfig.getServId() + ServiceConstants.SEND_MESSAGE_URI;
         String requestUri = ServiceConstants.API_URI + serviceUri;
-        log.info(serviceUri);
-        log.info(requestUri);
         try {
             requestData = objectMapper.writeValueAsString(request);
             log.info("SendMessageRequest params : {}", requestData);

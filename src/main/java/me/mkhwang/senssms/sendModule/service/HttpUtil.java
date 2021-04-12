@@ -1,10 +1,10 @@
 package me.mkhwang.senssms.sendModule.service;
 
-
 import lombok.extern.slf4j.Slf4j;
 import me.mkhwang.senssms.sendModule.response.parser.ResponseData;
 import me.mkhwang.senssms.sendModule.types.ServiceConstants;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -48,10 +48,10 @@ public class HttpUtil {
         int responseCode = con.getResponseCode();
 
         BufferedReader in;
-        if (responseCode != 202) {
-            in = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
-        }else {
+        if (HttpsURLConnection.HTTP_BAD_REQUEST > responseCode) {
             in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+        }else {
+            in = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
         }
         String inputLine;
         StringBuffer response = new StringBuffer();

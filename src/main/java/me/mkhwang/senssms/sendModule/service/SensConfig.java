@@ -1,21 +1,33 @@
 package me.mkhwang.senssms.sendModule.service;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by mkhwang on 2021/04/08.
  */
-@Data
+@Slf4j
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SensConfig {
 
     private String servId;
     private String accessKeyId;
     private String secretKey;
 
-    public SensConfig(String servId, String accessKeyId, String secretKey){
-        this.servId = servId;
-        this.accessKeyId = accessKeyId;
-        this.secretKey = secretKey;
+    public String getServId() {
+        return servId;
+    }
+
+    public String getAccessKeyId() {
+        return accessKeyId;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
     }
 
 }

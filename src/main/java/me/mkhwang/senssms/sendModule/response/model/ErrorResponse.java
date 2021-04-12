@@ -3,16 +3,16 @@ package me.mkhwang.senssms.sendModule.response.model;
 import lombok.Data;
 
 /**
- * Created by mkhwang on 2021/04/08.
+ * Created by mkhwang on 2021/04/09.
  */
 @Data
-public class ErrorResponse {
-    private Error error;
+public class ErrorResponse implements SensResponse {
+    private int status;
+    private String errorMessage;
+    private String[] errors;
 
-    @Data
-    class Error {
-        private int errorCode;
-        private String message;
-        private String details;
+    @Override
+    public int responseStatusCode() {
+        return status;
     }
 }
